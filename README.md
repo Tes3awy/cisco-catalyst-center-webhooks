@@ -1,3 +1,7 @@
+[![Code style: black](https://img.shields.io/badge/code%20style-black-000000.svg)](https://github.com/psf/black)
+[![Imports: isort](https://img.shields.io/badge/%20imports-isort-%231674b1?style=flat&labelColor=ef8336)](https://pycqa.github.io/isort/)
+![GitHub License](https://img.shields.io/github/license/Tes3awy/cisco-catalyst-center-webhooks)
+
 # Webhook Testing with Cisco Catalyst Center (a.k.a DNA Center)
 
 This project is a PoC for the use of webhooks with Cisco SDN solutions, specifically integrating with Cisco Catalyst Center. It leverages a Flask application to receive and process webhook notifications in real-time, showcasing how events from the Catalyst Center can be handled programmatically.
@@ -9,6 +13,8 @@ This project is a PoC for the use of webhooks with Cisco SDN solutions, specific
 - [Installation](#installation)
 - [Security Considerations/Improvements](#security-considerationsimprovements)
 - [Debugging Tips](#debugging-tips)
+- [Preview](#preview)
+- [References](#references)
 - [Contributing](#contributing)
 
 ## Features
@@ -90,6 +96,14 @@ Press CTRL+C to quit
 ## Debugging Tips
 
 Check the Flask application logs in the terminal for errors and/or warnings.
+
+## Preview
+![Dashboard](assets/dashboard.png)
+
+## References
+
+- [Configure a Webhook Destination](https://www.cisco.com/c/en/us/td/docs/cloud-systems-management/network-automation-and-management/dna-center-platform/2-3-7/user-guide/b-dnac-platform-ug-2-3-7/b-dnac-platform-ug-2-3-7-chapter-0101.html#Cisco_Task_in_List_GUI.dita_e24b1b78-ea6e-4aa5-932a-359e04d4122f)
+- [Get Webhook'd - How to Build your Cisco DNA Center Integration](https://dcl3wxcscqm28.cloudfront.net/8130338649073540/4521856223995780/TECH%2041%20GetWebhooked.pdf)
 
 ## Contributing
 
