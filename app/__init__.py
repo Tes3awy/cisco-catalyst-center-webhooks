@@ -1,6 +1,6 @@
 from flask import Flask
 
-from app.extensions import basic_auth, db, hashids, moment, socketio
+from app.extensions import basic_auth, db, moment, socketio
 from config import Config
 
 
