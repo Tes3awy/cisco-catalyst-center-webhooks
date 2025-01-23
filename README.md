@@ -105,6 +105,7 @@ Press CTRL+C to quit
 - For Authentication, choose **Basic** and set the required headers: 
   - `Authorization: Basic <BASE64 of username:password>`
   - `Content-Type: application/json`.
+- Configure a webhook destination for an event. _(Refer to the references section)_
 
 ## Security Considerations/Improvements
 
@@ -121,6 +122,7 @@ Check the Flask application logs in the terminal for errors and/or warnings.
 ## References
 
 - [Configure a Webhook Destination](https://www.cisco.com/c/en/us/td/docs/cloud-systems-management/network-automation-and-management/dna-center-platform/2-3-7/user-guide/b-dnac-platform-ug-2-3-7/b-dnac-platform-ug-2-3-7-chapter-0101.html#Cisco_Task_in_List_GUI.dita_e24b1b78-ea6e-4aa5-932a-359e04d4122f)
+- [Work with Event Notifications](https://www.cisco.com/c/en/us/td/docs/cloud-systems-management/network-automation-and-management/dna-center-platform/2-3-7/user-guide/b-dnac-platform-ug-2-3-7/b-dnac-platform-ug-2-3-7-chapter-0111.html#Cisco_Task_in_List_GUI.dita_ca236611-5a22-4c83-9a65-22d98a28b98e)
 - [Get Webhook'd - How to Build your Cisco DNA Center Integration](https://dcl3wxcscqm28.cloudfront.net/8130338649073540/4521856223995780/TECH%2041%20GetWebhooked.pdf)
 
 ## Contributing
