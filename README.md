@@ -49,9 +49,9 @@ $ source .venv/bin/activate . # On Windows, use `.\.venv\Scripts\Activate.ps1` i
 (.venv)$ 
 ```
 
-3. Install SQLite
+3. Install SQLite3
 
-**Linux**
+> Linux
 
 ```bash
 $ sudo apt update && sudo apt upgrade -y
@@ -59,17 +59,17 @@ $ sudo apt install sqlite3 -y
 $ sqlite3 --version
 ```
 
-**Windows**
+> Windows
 
 Follow this [tutorial](https://www.theserverside.com/blog/Coffee-Talk-Java-News-Stories-and-Opinions/SQLite3-How-to-download-and-install-SQLite-on-Windows-version-latest-tutorial)
 
-1. Install dependencies
+4. Install dependencies
 
 ```bash
 (.venv)$ pip install -r requirements.txt
 ```
 
-1. Update configuration (if required)
+5. Update configuration (if required)
 
 Open `config.py` file and change the values for
 
@@ -78,7 +78,7 @@ BASIC_AUTH_USERNAME="USERNAME"
 BASIC_AUTH_PASSWORD="PASSWORD"
 ```
 
-5. Run the application
+6. Run the application
 
 ```bash
 (.venv)$ flask run
@@ -97,7 +97,7 @@ Press CTRL+C to quit
 ***** Copy Headers for Cisco Catalyst Center Webhook *****
 ```
 
-6. Configure Cisco Catalyst Center
+7. Configure Cisco Catalyst Center
 
 - Navigate to **System > Webhooks** in the Catalyst Center dashboard.
 - Add a new POST webhook with the Webhook URL `https://<ip_address>:5443/api/v1/webhook`.
