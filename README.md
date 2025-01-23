@@ -99,9 +99,12 @@ Press CTRL+C to quit
 
 7. Configure Cisco Catalyst Center
 
-- Navigate to **System > Webhooks** in the Catalyst Center dashboard.
+- Navigate to **System > Settings > External Services > Destination > Webhook** in the Catalyst Center dashboard.
 - Add a new POST webhook with the Webhook URL `https://<ip_address>:5443/api/v1/webhook`.
-- Set the required headers: `Authorization: Basic <BASE64 of username:password>` and `Content-Type: application/json`.
+- For the Trust Certificate radio button, choose **No**.
+- For Authentication, choose **Basic** and set the required headers: 
+  - `Authorization: Basic <BASE64 of username:password>`
+  - `Content-Type: application/json`.
 
 ## Security Considerations/Improvements
 
