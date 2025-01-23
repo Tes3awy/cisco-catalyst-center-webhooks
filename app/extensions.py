@@ -1,12 +1,10 @@
 from flask_basicauth import BasicAuth
-from flask_hashids import Hashids
 from flask_moment import Moment
 from flask_socketio import SocketIO
 from flask_sqlalchemy import SQLAlchemy
 from sqlalchemy import MetaData
 
 moment = Moment()
-hashids = Hashids()
 socketio = SocketIO()
 basic_auth = BasicAuth()
 db = SQLAlchemy(
