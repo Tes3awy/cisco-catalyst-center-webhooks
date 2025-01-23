@@ -11,7 +11,6 @@ def create_app(config_class=Config):
 
     db.init_app(app)
     moment.init_app(app)
-    hashids.init_app(app)
     socketio.init_app(app)
     basic_auth.init_app(app)
 
