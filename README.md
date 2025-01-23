@@ -49,19 +49,33 @@ $ source .venv/bin/activate . # On Windows, use `.\.venv\Scripts\Activate.ps1` i
 (.venv)$ 
 ```
 
-3. Install dependencies
+3. Install SQLite
+
+**Linux**
+
+```bash
+$ sudo apt update && sudo apt upgrade -y
+$ sudo apt install sqlite3 -y
+$ sqlite3 --version
+```
+
+**Windows**
+
+Follow this [tutorial](https://www.theserverside.com/blog/Coffee-Talk-Java-News-Stories-and-Opinions/SQLite3-How-to-download-and-install-SQLite-on-Windows-version-latest-tutorial)
+
+1. Install dependencies
 
 ```bash
 (.venv)$ pip install -r requirements.txt
 ```
 
-4. Update configuration (if required)
+1. Update configuration (if required)
 
-Open `config.py` file and change 
+Open `config.py` file and change the values for
 
-```py
-BASIC_AUTH_USERNAME
-BASIC_AUTH_PASSWORD
+```python
+BASIC_AUTH_USERNAME="USERNAME"
+BASIC_AUTH_PASSWORD="PASSWORD"
 ```
 
 5. Run the application
