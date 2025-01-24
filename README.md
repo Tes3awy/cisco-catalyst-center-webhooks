@@ -1,7 +1,12 @@
 [![published](https://static.production.devnetcloud.com/codeexchange/assets/images/devnet-published.svg)](https://developer.cisco.com/codeexchange/github/repo/Tes3awy/cisco-catalyst-center-webhooks)
 [![Code style: black](https://img.shields.io/badge/code%20style-black-000000.svg)](https://github.com/psf/black)
 [![Imports: isort](https://img.shields.io/badge/%20imports-isort-%231674b1?style=flat&labelColor=ef8336)](https://pycqa.github.io/isort/)
+![GitHub commit activity](https://img.shields.io/github/commit-activity/m/Tes3awy/cisco-catalyst-center-webhooks)
+![GitHub contributors](https://img.shields.io/github/contributors/Tes3awy/cisco-catalyst-center-webhooks)
+![GitHub Issues or Pull Requests by label](https://img.shields.io/github/issues/Tes3awy/cisco-catalyst-center-webhooks/gh)
+![GitHub Issues or Pull Requests by label](https://img.shields.io/github/issues-pr/Tes3awy/cisco-catalyst-center-webhooks/gh)
 ![GitHub License](https://img.shields.io/github/license/Tes3awy/cisco-catalyst-center-webhooks)
+
 
 # Webhook Testing with Cisco Catalyst Center (a.k.a DNA Center)
 
@@ -124,6 +129,7 @@ Check the Flask application logs in the terminal for errors and/or warnings.
 - [Configure a Webhook Destination](https://www.cisco.com/c/en/us/td/docs/cloud-systems-management/network-automation-and-management/dna-center-platform/2-3-7/user-guide/b-dnac-platform-ug-2-3-7/b-dnac-platform-ug-2-3-7-chapter-0101.html#Cisco_Task_in_List_GUI.dita_e24b1b78-ea6e-4aa5-932a-359e04d4122f)
 - [Work with Event Notifications](https://www.cisco.com/c/en/us/td/docs/cloud-systems-management/network-automation-and-management/dna-center-platform/2-3-7/user-guide/b-dnac-platform-ug-2-3-7/b-dnac-platform-ug-2-3-7-chapter-0111.html#Cisco_Task_in_List_GUI.dita_ca236611-5a22-4c83-9a65-22d98a28b98e)
 - [Get Webhook'd - How to Build your Cisco DNA Center Integration](https://dcl3wxcscqm28.cloudfront.net/8130338649073540/4521856223995780/TECH%2041%20GetWebhooked.pdf)
+- [WebSockets and Webhooks - Embed network intelligence into your applications](https://www.ciscolive.com/c/dam/r/ciscolive/emea/docs/2024/pdf/DEVNET-1841.pdf)
 
 ## Contributing
 
