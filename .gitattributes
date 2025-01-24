@@ -1,0 +1,9 @@
+.gitattributes    !filter   !diff   zos-working-tree-encoding=iso8859-1
+.gitignore        zos-working-tree-encoding=iso8859-1
+
+
+*.png    binary 
+*.py     text   diff=python     eol=lf
+*.py3    text   diff=python     eol=lf
+*.md     text   diff=markdown   eol=lf
+*.j2     text   diff=jinja2     eol=lf
