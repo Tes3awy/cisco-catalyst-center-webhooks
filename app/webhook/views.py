@@ -1,7 +1,7 @@
 from http.client import CREATED
 
 import sqlalchemy as sa
-from flask import current_app, render_template, request
+from flask import current_app, jsonify, render_template, request
 
 from app import basic_auth, db, socketio
 from app.models import Notification
@@ -89,5 +89,14 @@ def webhook():
     )
 
     # You can add the logic of sending an email here as well
+    # Check https://realpython.com/python-send-email/
 
-    return "Webhook notification received and saved to the DB", CREATED
+    return (
+        jsonify(
+            {
+                "msg": "Webhook notification received and saved to the DB",
+                "code": CREATED,
+            }
+        ),
+        CREATED,
+    )

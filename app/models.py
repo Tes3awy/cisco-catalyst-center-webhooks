@@ -2,6 +2,7 @@ from datetime import datetime, timezone
 from typing import Optional
 
 import sqlalchemy.orm as so
+from sqlalchemy.ext.hybrid import hybrid_property
 
 from app import db
 
@@ -28,7 +29,7 @@ class Notification(TimestampMixin, db.Model):
     subdomain: so.Mapped[Optional[str]]
     severity: so.Mapped[Optional[int]]
     source: so.Mapped[Optional[str]]
-    timestamp: so.Mapped[Optional[int]]
+    _timestamp: so.Mapped[Optional[int]]
     details_type: so.Mapped[Optional[str]]
     priority: so.Mapped[Optional[str]]
     device: so.Mapped[Optional[str]]
@@ -37,6 +38,18 @@ class Notification(TimestampMixin, db.Model):
     issue_category: so.Mapped[Optional[str]]
     status: so.Mapped[Optional[str]]
     link: so.Mapped[Optional[str]]
+
+    @hybrid_property
+    def timestamp(self) -> int | float:
+        return self._timestamp
+
+    @timestamp.setter
+    def timestamp(self, value):
+        self._timestamp = datetime.fromtimestamp(value / 1000, timezone.utc)
+
+    @timestamp.expression
+    def timestamp(cls):
+        return cls._timestamp
 
     def __repr__(self):
         return f"<Notification {self.id!r}, {self.priority!r}, {self.severity!r}, {self.name!r}>"
