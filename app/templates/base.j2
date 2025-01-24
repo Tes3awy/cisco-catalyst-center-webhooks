@@ -54,20 +54,18 @@
                 <div class="container-fluid">
                     <div class="row g-3 align-items-center">
                         <div class="col-auto">
-                            <span class="status-indicator status-green status-indicator-animated">
+                            <span class="status-indicator status-green status-indicator-animated" id="status-indicator">
                                 <span class="status-indicator-circle"></span>
                                 <span class="status-indicator-circle"></span>
                                 <span class="status-indicator-circle"></span>
                             </span>
                         </div>
                         <div class="col">
-                            <h2 class="page-title">
-                                Cisco Catalyst Center
-                            </h2>
+                            <h2 class="page-title">Cisco Catalyst Center</h2>
                             <div class="text-secondary">
                                 <ul class="list-inline list-inline-dots mb-0">
                                     <li class="list-inline-item">
-                                        <span class="text-green">Up</span>
+                                        Server Status: <span class="text-green" id="status" aria-live="polite">Up</span>
                                     </li>
                                     <li class="list-inline-item">Real-time events</li>
                                 </ul>
@@ -99,6 +97,51 @@
             </div>
         </div>
         <script src="//cdn.jsdelivr.net/npm/@tabler/core@1.0.0-beta24/dist/js/tabler.min.js"></script>
+        <script type="text/javascript">
+            function scheduleNextCheck() {
+                setTimeout(checkServerStatus, 3000);
+            }
+            async function checkServerStatus() {
+                const statusIndicator = document.getElementById('status-indicator');
+                const status = document.getElementById('status');
+                try {
+                    const response = await fetch('{{ url_for("main.server_status") }}');
+                    if (response.ok && response.status === 200) {
+                        const data = await response.json();
+                        console.log(`[${new Date().toLocaleTimeString()}] Server Status:`, data.status);
+                        if (data.status === "up" && !status.classList.contains("text-green")) {
+                            status.textContent = "Up";
+                            status.classList.add("text-green");
+                            status.classList.remove("text-red");
+                            statusIndicator.classList.add("status-green");
+                            statusIndicator.classList.remove("status-red");
+                        } else if (data.status === "down" && !status.classList.contains("text-red")) {
+                            status.textContent = "Down";
+                            status.classList.add("text-red");
+                            status.classList.remove("text-green");
+                            statusIndicator.classList.add("status-red");
+                            statusIndicator.classList.remove("status-green");
+                        }
+                    } else {
+                        throw new Error("Server responded with an erroneous status");
+                    }
+                } catch (error) {
+                    console.error(`[${new Date().toLocaleTimeString()}] Server Status: Down`);
+                    console.error("Error fetching server status:", error);
+                    if (!status.classList.contains("text-red")) {
+                        status.textContent = "DOWN (Fetch Failed)!";
+                        status.classList.add("text-red");
+                        status.classList.remove("text-green");
+                        statusIndicator.classList.add("status-red");
+                        statusIndicator.classList.remove("status-green");
+                    }
+                }
+                scheduleNextCheck();
+            }
+            window.onload = () => {
+                checkServerStatus();
+            };
+        </script>
         {% block js %}{% endblock js %}
     </body>
 

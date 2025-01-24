@@ -1,8 +1,9 @@
 import sqlalchemy as sa
-from flask import current_app, render_template
+from flask import current_app, jsonify, render_template
 
 from app import basic_auth, db
 from app.main import bp
+from app.main.utils import is_server_running
 from app.models import Notification
 
 
@@ -22,3 +23,10 @@ def list():
         sa.select(Notification).order_by(Notification.created.desc())
     )
     return render_template("main/view.j2", notifications=notifications)
+
+
+# GET
+@bp.get("/server-status")
+def server_status():
+    status = is_server_running()
+    return jsonify({"status": "up" if status else "down"}), 200 if status else 500
