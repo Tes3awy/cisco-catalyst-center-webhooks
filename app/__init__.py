@@ -19,8 +19,12 @@ def create_app(config_class=Config):
     with app.app_context():
         db.create_all()
 
+    from app.main.views import bp as main_bp
+
+    app.register_blueprint(main_bp)
+
     from app.webhook.views import bp as webhook_bp
 
-    app.register_blueprint(webhook_bp)
+    app.register_blueprint(webhook_bp, url_prefix="/api/v1")
 
     return app
