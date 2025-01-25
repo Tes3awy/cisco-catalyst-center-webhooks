@@ -1,4 +1,4 @@
-from http.client import CREATED
+from http import HTTPStatus
 
 from flask import jsonify, request
 
@@ -76,8 +76,8 @@ def webhook():
         jsonify(
             {
                 "msg": "Webhook notification received and saved to the DB",
-                "code": CREATED,
+                "code": HTTPStatus.CREATED,
             }
         ),
-        CREATED,
+        HTTPStatus.CREATED,
     )
