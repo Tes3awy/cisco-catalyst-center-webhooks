@@ -12,7 +12,7 @@ class Config(object):
     BASIC_AUTH_USERNAME = "admin"
     # Password for the webhook BasicAuth (Change if needed)
     BASIC_AUTH_PASSWORD = "Cisco!2345"
-    BASIC_AUTH_FORCE = True
+    BASIC_AUTH_FORCE = False
     BASIC_AUTH_REALM = "Cisco Catalyst Center Webhooks Authentication Required"
     # Authorization String
     BASIC_AUTH = base64.b64encode(
