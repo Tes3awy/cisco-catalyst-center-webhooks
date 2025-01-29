@@ -19,8 +19,9 @@ def print_headers():
 
 
 # GET
+@bp.get("/home")
 @bp.get("/")
-def list():
+def index():
     notifications = db.session.scalars(
         sa.select(Notification).order_by(Notification.created.desc())
     )
@@ -28,6 +29,7 @@ def list():
 
 
 # GET
+@bp.get("/status")
 @bp.get("/server-status")
 def server_status():
     status = is_server_running()
