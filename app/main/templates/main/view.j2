@@ -1,72 +1,77 @@
 {% extends "base.j2" %}
 
 {% block content %}
-<table class="table table-striped table-bordered card-table table-sm table-vcenter" role="table">
-    <thead class="table-light">
-        <tr>
-            <th scope="col">
-                <span class="status-dot status-azure" data-bs-toggle="tooltip" data-bs-placement="top" title="Status"
-                    role="tooltip"></span>
-            </th>
-            <th scope="col">Event ID</th>
-            <th scope="col">Severity</th>
-            <th scope="col">Priority</th>
-            <th scope="col">Category</th>
-            <th scope="col">Namespace</th>
-            <th scope="col">Name</th>
-            <th scope="col">Description</th>
-            <th scope="col">Type</th>
-            <th scope="col">Domain</th>
-            <th scope="col">Subdomain</th>
-            <th scope="col">Source</th>
-            <th scope="col">Timestamp</th>
-            <th scope="col">Details</th>
-            <th scope="col">Device</th>
-            <th scope="col">Issue</th>
-            <th scope="col">Issue Description</th>
-            <th scope="col">Issue Category</th>
-            <th scope="col">Issue Link</th>
-        </tr>
-    </thead>
-    <tbody class="table-group-divider" id="notifications-list">
-        {% for notification in notifications %}
-        <tr>
-            {% if notification.status == "resolved" %}
-            <td>
-                <span class="status-dot status-green" data-bs-toggle="tooltip" data-bs-placement="right"
-                    title="Resolved" role="tooltip"></span>
-            </td>
-            {% else %}
-            <td>
-                <span class="status-dot status-red" data-bs-toggle="tooltip" data-bs-placement="right" title="Active"
-                    role="tooltip"></span>
-            </td>
-            {% endif %}
-            <td>{{ notification.event_id }}</td>
-            <td>{{ notification.severity }}</td>
-            <td>{{ notification.priority }}</td>
-            <td>{{ notification.category }}</td>
-            <td>{{ notification.namespace }}</td>
-            <td>{{ notification.name }}</td>
-            <td>{{ notification.descr }}</td>
-            <td>{{ notification.event_type }}</td>
-            <td>{{ notification.domain }}</td>
-            <td>{{ notification.subdomain }}</td>
-            <td>{{ notification.source }}</td>
-            <td>{{ moment(notification.timestamp).fromNow() }}</td>
-            <td>{{ notification.details_type }}</td>
-            <td>{{ notification.device }}</td>
-            <td>{{ notification.issue }}</td>
-            <td>{{ notification.issue_name }}</td>
-            <td>{{ notification.issue_category }}</td>
-            <td>
-                <a href="{{ notification.link }}" target="_blank" rel="noopener noreferrer"
-                    title="{{ notification.issue_name }}">{{ notification.link }}</a>
-            </td>
-        </tr>
-        {% endfor %}
-    </tbody>
-</table>
+<div class="card">
+    <div class="card-table table-responsive">
+
+        <table class="table table-striped table-bordered card-table table-sm table-vcenter" role="table">
+            <thead class="table-light">
+                <tr>
+                    <th scope="col">
+                        <span class="status-dot status-azure" data-bs-toggle="tooltip" data-bs-placement="top"
+                            title="Status" role="tooltip"></span>
+                    </th>
+                    <th scope="col">Event ID</th>
+                    <th scope="col">Severity</th>
+                    <th scope="col">Priority</th>
+                    <th scope="col">Category</th>
+                    <th scope="col">Namespace</th>
+                    <th scope="col">Name</th>
+                    <th scope="col">Description</th>
+                    <th scope="col">Type</th>
+                    <th scope="col">Domain</th>
+                    <th scope="col">Subdomain</th>
+                    <th scope="col">Source</th>
+                    <th scope="col">Timestamp</th>
+                    <th scope="col">Details</th>
+                    <th scope="col">Device</th>
+                    <th scope="col">Issue</th>
+                    <th scope="col">Issue Description</th>
+                    <th scope="col">Issue Category</th>
+                    <th scope="col">Issue Link</th>
+                </tr>
+            </thead>
+            <tbody class="table-group-divider" id="notifications-list">
+                {% for notification in notifications %}
+                <tr>
+                    {% if notification.status == "resolved" %}
+                    <td>
+                        <span class="status-dot status-green" data-bs-toggle="tooltip" data-bs-placement="right"
+                            title="Resolved" role="tooltip"></span>
+                    </td>
+                    {% else %}
+                    <td>
+                        <span class="status-dot status-red" data-bs-toggle="tooltip" data-bs-placement="right"
+                            title="Active" role="tooltip"></span>
+                    </td>
+                    {% endif %}
+                    <td>{{ notification.event_id }}</td>
+                    <td>{{ notification.severity }}</td>
+                    <td>{{ notification.priority }}</td>
+                    <td>{{ notification.category }}</td>
+                    <td>{{ notification.namespace }}</td>
+                    <td>{{ notification.name }}</td>
+                    <td>{{ notification.descr }}</td>
+                    <td>{{ notification.event_type }}</td>
+                    <td>{{ notification.domain }}</td>
+                    <td>{{ notification.subdomain }}</td>
+                    <td>{{ notification.source }}</td>
+                    <td>{{ moment(notification.timestamp).fromNow() }}</td>
+                    <td>{{ notification.details_type }}</td>
+                    <td>{{ notification.device }}</td>
+                    <td>{{ notification.issue }}</td>
+                    <td>{{ notification.issue_name }}</td>
+                    <td>{{ notification.issue_category }}</td>
+                    <td>
+                        <a href="{{ notification.link }}" target="_blank" rel="noopener noreferrer"
+                            title="{{ notification.issue_name }}">{{ notification.link }}</a>
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</div>
 {% endblock content %}
 
 {% block js %}

@@ -1,109 +1,100 @@
 <!doctype html>
 <html lang="en-US">
 
-    <head>
-        <meta charset="utf-8">
-        <meta name="viewport" content="width=device-width,initial-scale=1.0">
-        <title>Cisco Catalyst Center Webhooks</title>
-        <link rel="preconnect" href="//fonts.googleapis.com">
-        <link rel="preconnect" href="//fonts.gstatic.com" crossorigin>
-        <link rel="stylesheet" href="//fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&display=swap">
-        <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/@tabler/core@1.0.0-beta24/dist/css/tabler.min.css">
-        <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/@tabler/core@1.0.0-beta24/dist/css/tabler-flags.min.css">
-        <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/@tabler/core@1.0.0-beta24/dist/css/tabler-payments.min.css">
-        <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/@tabler/core@1.0.0-beta24/dist/css/tabler-social.min.css">
-        <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/@tabler/core@1.0.0-beta24/dist/css/tabler-vendors.min.css">
-        <link rel="apple-touch-icon" sizes="57x57"
-            href="{{ url_for('static', filename='favicon/apple-icon-57x57.png') }}">
-        <link rel="apple-touch-icon" sizes="60x60"
-            href="{{ url_for('static', filename='favicon/apple-icon-60x60.png') }}">
-        <link rel="apple-touch-icon" sizes="72x72"
-            href="{{ url_for('static', filename='favicon/apple-icon-72x72.png') }}">
-        <link rel="apple-touch-icon" sizes="76x76"
-            href="{{ url_for('static', filename='favicon/apple-icon-76x76.png') }}">
-        <link rel="apple-touch-icon" sizes="114x114"
-            href="{{ url_for('static', filename='favicon/apple-icon-114x114.png') }}">
-        <link rel="apple-touch-icon" sizes="120x120"
-            href="{{ url_for('static', filename='favicon/apple-icon-120x120.png') }}">
-        <link rel="apple-touch-icon" sizes="144x144"
-            href="{{ url_for('static', filename='favicon/apple-icon-144x144.png') }}">
-        <link rel="apple-touch-icon" sizes="152x152"
-            href="{{ url_for('static', filename='favicon/apple-icon-152x152.png') }}">
-        <link rel="apple-touch-icon" sizes="180x180"
-            href="{{ url_for('static', filename='favicon/apple-icon-180x180.png') }}">
-        <link rel="icon" type="image/png" sizes="192x192"
-            href="{{ url_for('static', filename='favicon/android-icon-192x192.png') }}">
-        <link rel="icon" type="image/png" sizes="32x32"
-            href="{{ url_for('static', filename='favicon/favicon-32x32.png') }}">
-        <link rel="icon" type="image/png" sizes="96x96"
-            href="{{ url_for('static', filename='favicon/favicon-96x96.png') }}">
-        <link rel="icon" type="image/png" sizes="16x16"
-            href="{{ url_for('static', filename='favicon/favicon-16x16.png') }}">
-        <link rel="manifest" href="{{ url_for('static', filename='favicon/manifest.json') }}">
-        <meta name="msapplication-TileColor" content="#ffffff">
-        <meta name="msapplication-TileImage" content="{{ url_for('static', filename='favicon/ms-icon-144x144.png') }}">
-        <meta name="theme-color" content="#ffffff">
-        {{ moment.include_moment() }}
-        {{ moment.locale(auto_detect=True) }}
-    </head>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1.0">
+    <title>Cisco Catalyst Center Webhooks</title>
+    <link rel="preconnect" href="//fonts.googleapis.com">
+    <link rel="preconnect" href="//fonts.gstatic.com" crossorigin>
+    <link rel="stylesheet" href="//fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&display=swap">
+    <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/@tabler/core@1.0.0-beta24/dist/css/tabler.min.css">
+    <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/@tabler/core@1.0.0-beta24/dist/css/tabler-flags.min.css">
+    <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/@tabler/core@1.0.0-beta24/dist/css/tabler-payments.min.css">
+    <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/@tabler/core@1.0.0-beta24/dist/css/tabler-social.min.css">
+    <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/@tabler/core@1.0.0-beta24/dist/css/tabler-vendors.min.css">
+    <link rel="apple-touch-icon" sizes="57x57" href="{{ url_for('static', filename='favicon/apple-icon-57x57.png') }}">
+    <link rel="apple-touch-icon" sizes="60x60" href="{{ url_for('static', filename='favicon/apple-icon-60x60.png') }}">
+    <link rel="apple-touch-icon" sizes="72x72" href="{{ url_for('static', filename='favicon/apple-icon-72x72.png') }}">
+    <link rel="apple-touch-icon" sizes="76x76" href="{{ url_for('static', filename='favicon/apple-icon-76x76.png') }}">
+    <link rel="apple-touch-icon" sizes="114x114"
+        href="{{ url_for('static', filename='favicon/apple-icon-114x114.png') }}">
+    <link rel="apple-touch-icon" sizes="120x120"
+        href="{{ url_for('static', filename='favicon/apple-icon-120x120.png') }}">
+    <link rel="apple-touch-icon" sizes="144x144"
+        href="{{ url_for('static', filename='favicon/apple-icon-144x144.png') }}">
+    <link rel="apple-touch-icon" sizes="152x152"
+        href="{{ url_for('static', filename='favicon/apple-icon-152x152.png') }}">
+    <link rel="apple-touch-icon" sizes="180x180"
+        href="{{ url_for('static', filename='favicon/apple-icon-180x180.png') }}">
+    <link rel="icon" type="image/png" sizes="192x192"
+        href="{{ url_for('static', filename='favicon/android-icon-192x192.png') }}">
+    <link rel="icon" type="image/png" sizes="32x32"
+        href="{{ url_for('static', filename='favicon/favicon-32x32.png') }}">
+    <link rel="icon" type="image/png" sizes="96x96"
+        href="{{ url_for('static', filename='favicon/favicon-96x96.png') }}">
+    <link rel="icon" type="image/png" sizes="16x16"
+        href="{{ url_for('static', filename='favicon/favicon-16x16.png') }}">
+    <link rel="manifest" href="{{ url_for('static', filename='favicon/manifest.json') }}">
+    <meta name="msapplication-TileColor" content="#ffffff">
+    <meta name="msapplication-TileImage" content="{{ url_for('static', filename='favicon/ms-icon-144x144.png') }}">
+    <meta name="theme-color" content="#ffffff">
+    {{ moment.include_moment() }}
+    {{ moment.locale(auto_detect=True) }}
+</head>
 
-    <body>
-        <audio id="notification-sound" src="{{ url_for('static', filename='audio/ding.mp3') }}" preload="auto"></audio>
-        <div class="page-wrapper">
-            <div class="page-header">
-                <div class="container-fluid">
-                    <div class="row g-3 align-items-center">
-                        <div class="col-auto">
-                            <span class="status-indicator status-green status-indicator-animated" id="status-indicator">
-                                <span class="status-indicator-circle"></span>
-                                <span class="status-indicator-circle"></span>
-                                <span class="status-indicator-circle"></span>
-                            </span>
-                        </div>
-                        <div class="col">
-                            <h2 class="page-title">Cisco Catalyst Center</h2>
-                            <div class="text-secondary">
-                                <ul class="list-inline list-inline-dots mb-0">
-                                    <li class="list-inline-item">
-                                        Server Status: <span class="text-green" id="status" aria-live="polite">Up</span>
-                                    </li>
-                                    <li class="list-inline-item">Real-time events</li>
-                                </ul>
-                            </div>
-                        </div>
-                        <div class="col-md-auto ms-auto d-print-none">
-                            <div class="btn-list">
-                                <button class="btn btn-primary btn-3" id="toggle-sound"
-                                    title="Toggle Notification Sound">
-                                    Enable Notification Sound
-                                </button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="page-body">
+<body>
+    <audio id="notification-sound" src="{{ url_for('static', filename='audio/ding.mp3') }}" preload="auto"></audio>
+    <div class="page-wrapper">
+        <div class="page-header">
             <div class="container-fluid">
-                <div class="row row-cards">
-                    <div class="col-12">
-                        <div class="card">
-                            <div class="card-table table-responsive">
-                                {% block content %}{% endblock content %}
-                            </div>
+                <div class="row g-3 align-items-center">
+                    <div class="col-auto">
+                        <span class="status-indicator status-green status-indicator-animated" id="status-indicator">
+                            <span class="status-indicator-circle"></span>
+                            <span class="status-indicator-circle"></span>
+                            <span class="status-indicator-circle"></span>
+                        </span>
+                    </div>
+                    <div class="col">
+                        <h2 class="page-title">Cisco Catalyst Center</h2>
+                        <div class="text-secondary">
+                            <ul class="list-inline list-inline-dots mb-0">
+                                <li class="list-inline-item">
+                                    Server Status: <span class="text-green" id="status" aria-live="polite">Up</span>
+                                </li>
+                                <li class="list-inline-item">Real-time events</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="col-md-auto ms-auto d-print-none">
+                        <div class="btn-list">
+                            <button class="btn btn-primary btn-3" id="toggle-sound" title="Toggle Notification Sound">
+                                Enable Notification Sound
+                            </button>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-        <script src="//cdn.jsdelivr.net/npm/@tabler/core@1.0.0-beta24/dist/js/tabler.min.js"></script>
-        <script src="{{ url_for('static', filename='js/index.js') }}"></script>
-        <script type="text/javascript">
-            window.onload = () => {
-                checkServerStatus();
-            };
-        </script>
-        {% block js %}{% endblock js %}
-    </body>
+    </div>
+    <div class="page-body">
+        <div class="container-fluid">
+            <div class="row row-cards">
+                <div class="col-12">
+                    {% block content %}{% endblock content %}
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="//cdn.jsdelivr.net/npm/@tabler/core@1.0.0-beta24/dist/js/tabler.min.js"></script>
+    <script src="{{ url_for('static', filename='js/index.js') }}"></script>
+    <script type="text/javascript">
+        window.onload = () => {
+            checkServerStatus();
+        };
+    </script>
+    {% block js %}{% endblock js %}
+</body>
 
 </html>
