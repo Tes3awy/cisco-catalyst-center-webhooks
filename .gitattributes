@@ -1,6 +1,9 @@
 .gitattributes    !filter   !diff   zos-working-tree-encoding=iso8859-1
 .gitignore        zos-working-tree-encoding=iso8859-1
 
+*.py    linguist-language=Python
+*.js    linguist-language=JavaScript
+*.j2    linguist-detectable=false
 
 *.png    binary 
 *.py     text   diff=python     eol=lf
