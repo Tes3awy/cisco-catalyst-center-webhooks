@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 from http import HTTPStatus
 
 from flask import jsonify, request

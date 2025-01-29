@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 from flask import Flask
 
 from app.extensions import basic_auth, db, moment, socketio
