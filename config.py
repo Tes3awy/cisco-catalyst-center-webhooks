@@ -7,6 +7,7 @@ import secrets
 class Config(object):
     TESTING = True
     SECRET_KEY = secrets.token_hex()
+    DB_SERVER = "localhost"
     SQLALCHEMY_DATABASE_URI = "sqlite:///webhook.sqlite3"
     SQLALCHEMY_RECORD_QUERIES = True
     SQLALCHEMY_TRACK_MODIFICATIONS = False
@@ -20,3 +21,9 @@ class Config(object):
     BASIC_AUTH = base64.b64encode(
         f"{BASIC_AUTH_USERNAME}:{BASIC_AUTH_PASSWORD}".encode("utf-8")
     ).decode("utf-8")
+    # Pagination
+    PER_PAGE = 10
+    MAX_PER_PAGE = 100
+    # Cache-Control
+    SEND_FILE_MAX_AGE_DEFAULT = 300
+    PREFERRED_URL_SCHEME = "https"
