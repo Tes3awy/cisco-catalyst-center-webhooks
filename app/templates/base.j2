@@ -4,7 +4,7 @@
     <head>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width,initial-scale=1.0">
-        <title>Cisco Catalyst Center Webhooks</title>
+        <title>{% if title %}{{ title }} &dash; {% endif -%} Cisco Catalyst Center Webhooks</title>
         <link rel="preconnect" href="//fonts.googleapis.com">
         <link rel="preconnect" href="//fonts.gstatic.com" crossorigin>
         <link rel="stylesheet" href="//fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&display=swap">
@@ -40,6 +40,7 @@
         <link rel="icon" type="image/png" sizes="16x16"
             href="{{ url_for('static', filename='favicon/favicon-16x16.png') }}">
         <link rel="manifest" href="{{ url_for('static', filename='favicon/manifest.json') }}">
+        <link rel="icon" href="{{ url_for('static', filename='favicon/favicon.ico') }}" type="image/x-icon">
         <meta name="msapplication-TileColor" content="#ffffff">
         <meta name="msapplication-TileImage" content="{{ url_for('static', filename='favicon/ms-icon-144x144.png') }}">
         <meta name="theme-color" content="#ffffff">
@@ -73,7 +74,7 @@
                         </div>
                         <div class="col-md-auto ms-auto d-print-none">
                             <div class="btn-list">
-                                <button class="btn btn-primary btn-3" id="toggle-sound"
+                                <button class="btn btn-primary btn-3" id="toggle-sound" type="button"
                                     title="Toggle Notification Sound">
                                     Enable Notification Sound
                                 </button>
@@ -83,15 +84,15 @@
                 </div>
             </div>
         </div>
-        <div class="page-body">
+        <main class="page-body">
             <div class="container-fluid">
                 <div class="row">
-                    <div class="col-12 pb-3">
+                    <div class="col-12">
                         {% block content %}{% endblock content %}
                     </div>
                 </div>
             </div>
-        </div>
+        </main>
         <script src="//cdn.jsdelivr.net/npm/@tabler/core@1.0.0-beta24/dist/js/tabler.min.js"></script>
         <script src="{{ url_for('static', filename='js/index.js') }}"></script>
         <script type="text/javascript">
