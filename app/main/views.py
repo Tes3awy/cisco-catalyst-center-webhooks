@@ -2,7 +2,7 @@
 from http import HTTPStatus
 
 import sqlalchemy as sa
-from flask import current_app, jsonify, render_template
+from flask import current_app, jsonify, render_template, request
 
 from app import db
 from app.main import bp
@@ -21,11 +21,21 @@ def print_headers():
 # GET
 @bp.get("/home")
 @bp.get("/")
-def index():
-    notifications = db.session.scalars(
-        sa.select(Notification).order_by(Notification.created.desc())
+def index(title="Home"):
+    page = request.args.get("page", 1, type=int)
+    per_page = request.args.get(
+        "per_page", current_app.config.get("PER_PAGE"), type=int
     )
-    return render_template("main/view.j2", notifications=notifications)
+    notifications = db.paginate(
+        sa.select(Notification).order_by(Notification.created.desc()),
+        page=page,
+        per_page=per_page,
+        max_per_page=current_app.config.get("MAX_PER_PAGE"),
+        error_out=False,
+    )
+    return render_template(
+        "main/view.j2", notifications=notifications, title=title, page=page
+    )
 
 
 # GET
@@ -33,6 +43,13 @@ def index():
 @bp.get("/server-status")
 def server_status():
     status = is_server_running()
-    return jsonify({"status": "up" if status else "down"}), (
-        HTTPStatus.OK if status else HTTPStatus.INTERNAL_SERVER_ERROR
+    return (
+        jsonify(
+            {
+                "status": "up" if status else "down",
+                "code": HTTPStatus.OK if status else HTTPStatus.INTERNAL_SERVER_ERROR,
+            }
+        ),
+        (HTTPStatus.OK if status else HTTPStatus.INTERNAL_SERVER_ERROR),
+        {"Content-Type": "application/json; charset=utf-8"},
     )

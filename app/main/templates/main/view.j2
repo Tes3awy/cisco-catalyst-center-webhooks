@@ -1,9 +1,11 @@
 {% extends "base.j2" %}
 
+{% from "main/macros.j2" import render_pagination with context %}
+
 {% block content %}
 <div class="card">
-    <div class="card-table table-responsive">
-        <table class="table table-striped table-bordered card-table table-sm table-vcenter" role="table">
+    <div class="table-responsive">
+        <table class="table  table-bordered table-hover table-sm table-vcenter table-nowrap" role="table">
             <thead class="table-light">
                 <tr>
                     <th scope="col">
@@ -70,6 +72,15 @@
             </tbody>
         </table>
     </div>
+    <div class="card-footer d-flex align-items-center">
+        <p class="m-0 text-secondary">Showing <span>{{ notifications.first }}</span> to
+            <span>{{ notifications.last }}</span>
+            of <span>{{ notifications.total }}</span> entries
+        </p>
+        {% if notifications.total > config.get('PER_PAGE') %}
+        {{ render_pagination(notifications) }}
+        {% endif %}
+    </div>
 </div>
 {% endblock content %}
 
@@ -83,13 +94,14 @@
     // Enable sound on user interaction
     let soundEnabled = false;
     toggleSoundButton.addEventListener('click', () => {
+        toggleSoundButton.classList.toggle('btn-primary');
         soundEnabled = !soundEnabled;
         if (soundEnabled) {
-            toggleSoundButton.textContent = "Disable Notification Sound";
-            console.log('Notifications Sound Disabled');
-        } else {
-            toggleSoundButton.textContent = "Enable Notification Sound";
+            toggleSoundButton.textContent = 'Disable Notification Sound';
             console.log('Notifications Sound Enabled');
+        } else {
+            toggleSoundButton.textContent = 'Enable Notification Sound';
+            console.log('Notifications Sound Disbled');
         }
     });
 
@@ -133,6 +145,11 @@
         `;
         // Prepend the new row to the table body
         tableBody.prepend(row);
+        // Highlight the new row
+        row.classList.add('bg-purple-lt', 'table-active');
+        setTimeout(() => {
+            row.classList.remove('bg-purple-lt', 'table-active');
+        }, 10000);
         console.log('New event notification created');
         if (soundEnabled) {
             notificationSound.play().catch((err) => {
