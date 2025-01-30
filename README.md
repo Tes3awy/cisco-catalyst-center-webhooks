@@ -31,6 +31,7 @@ This project is a Proof of Concept (PoC) for the use of webhooks with Cisco SDN 
 - **Real-time Updates**: Display incoming notifications in a dynamically updating dashboard web page.
 - **Authentication**: Secure webhook endpoints with basic authentication.
 - **Notification Sound**: Play a sound when a new notification is received.
+- **Pagination**: Display event notifications in a paginated format.
 
 ## Prerequisites
 
