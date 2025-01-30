@@ -9,6 +9,7 @@ from werkzeug.exceptions import (
     NotFound,
     ServiceUnavailable,
     Unauthorized,
+    UnsupportedMediaType,
 )
 
 from app import db
@@ -21,6 +22,7 @@ from app.error import bp
 @bp.app_errorhandler(NotFound)  # 404
 @bp.app_errorhandler(MethodNotAllowed)  # 405
 @bp.app_errorhandler(NotAcceptable)  # 406
+@bp.app_errorhandler(UnsupportedMediaType)  # 415
 def http_request_error(e):
     if request.path.startswith("/api/"):
         return (

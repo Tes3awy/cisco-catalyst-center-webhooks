@@ -10,13 +10,14 @@
 
 # Webhook Testing with Cisco Catalyst Center (a.k.a DNA Center)
 
-This project is a PoC for the use of webhooks with Cisco SDN solutions, specifically integrating with Cisco Catalyst Center. It leverages a Flask application to receive and process webhook notifications in real-time, showcasing how events from the Catalyst Center can be handled programmatically.
+This project is a Proof of Concept (PoC) for the use of webhooks with Cisco SDN solutions, specifically integrating with Cisco Catalyst Center. It leverages a Flask application to receive and process webhook notifications in real-time, showcasing how events from the Cisco Catalyst Center can be handled programmatically.
 
 # Table of Contents
 
 - [Features](#features)
 - [Prerequisites](#prerequisites)
 - [Installation](#installation)
+- [Usage](#usage)
 - [Security Considerations/Improvements](#security-considerationsimprovements)
 - [Debugging Tips](#debugging-tips)
 - [Preview](#preview)
@@ -74,11 +75,11 @@ Follow this [tutorial](https://www.theserverside.com/blog/Coffee-Talk-Java-News-
 (.venv)$ pip install -r requirements.txt
 ```
 
-5. Update configuration (if required)
+5. Set _private_ environment variables
 
-Open `config.py` file and change the values for
+Create a `.env` file in the root directory and add the following:
 
-```python
+```env
 BASIC_AUTH_USERNAME="USERNAME"
 BASIC_AUTH_PASSWORD="PASSWORD"
 ```
@@ -108,9 +109,13 @@ Press CTRL+C to quit
 - Add a new POST webhook with the Webhook URL `https://<ip_address>:5443/api/v1/webhook`.
 - For the Trust Certificate radio button, choose **No**.
 - For Authentication, choose **Basic** and set the required headers: 
+  - `Content-Type: application/json`
   - `Authorization: Basic <BASE64 of username:password>`
-  - `Content-Type: application/json`.
 - Configure a webhook destination for an event. _(Refer to the references section)_
+
+## Usage
+
+Once the application is running, it will listen for webhook notifications from Cisco Catalyst Center. When a notification is received, it will be displayed on the dashboard in real-time.
 
 ## Security Considerations/Improvements
 

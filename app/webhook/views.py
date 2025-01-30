@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 from http import HTTPStatus
 
-from flask import jsonify, request
+from flask import jsonify, request, url_for
 
 from app import basic_auth, db, socketio
 from app.models import Notification
@@ -38,36 +38,7 @@ def webhook():
     db.session.commit()
 
     socketio.emit(
-        "newEvent",
-        {
-            "code": (
-                "<span class='status-dot status-green'></span>"
-                if request.json.get("details").get("Assurance Issue Status")
-                == "resolved"
-                else "<span class='status-dot status-red'></span>"
-            ),
-            "eventId": request.json.get("eventId"),
-            "namespace": request.json.get("namespace"),
-            "name": request.json.get("name"),
-            "descr": request.json.get("description"),
-            "eventType": request.json.get("type"),
-            "category": request.json.get("category"),
-            "domain": request.json.get("domain"),
-            "subDomain": request.json.get("subDomain"),
-            "severity": request.json.get("severity"),
-            "source": request.json.get("source"),
-            "timestamp": request.json.get("timestamp"),
-            "detailsType": request.json.get("details").get("Type"),
-            "priority": request.json.get("details").get("Assurance Issue Priority"),
-            "issue": request.json.get("details").get("Assurance Issue Details"),
-            "device": request.json.get("details").get("Device"),
-            "issueName": request.json.get("details").get("Assurance Issue Name"),
-            "issueCategory": request.json.get("details").get(
-                "Assurance Issue Category"
-            ),
-            "status": request.json.get("details").get("Assurance Issue Status"),
-            "link": request.json.get("ciscoDnaEventLink"),
-        },
+        "event", {"data": notificaion.serialize}, namespace=url_for("main.index")
     )
 
     # You can add the logic of sending an email here as well

@@ -3,7 +3,6 @@
 {% block content %}
 <div class="card">
     <div class="card-table table-responsive">
-
         <table class="table table-striped table-bordered card-table table-sm table-vcenter" role="table">
             <thead class="table-light">
                 <tr>
@@ -77,7 +76,7 @@
 {% block js %}
 <script src="//cdn.socket.io/4.8.1/socket.io.min.js"></script>
 <script type="text/javascript">
-    const socket = io();
+    const socket = io("https://{{ request.host }}");
     const notificationSound = document.getElementById('notification-sound');
     const toggleSoundButton = document.getElementById('toggle-sound');
 
@@ -94,34 +93,42 @@
         }
     });
 
-    socket.on('newEvent', (data) => {
+    socket.on('connect', () => {
+        console.log(`[${new Date().toLocaleTimeString()}] WebSocket: Connected to the server`);
+    });
+
+    socket.on('disconnect', () => {
+        console.log(`[${new Date().toLocaleTimeString()}] WebSocket: Disconnected from the server`);
+    });
+
+    socket.on('event', (response) => {
         const tableBody = document.getElementById('notifications-list');
         // Create a new row
         const row = document.createElement('tr');
-        let timestamp = moment.utc(data.timestamp).local().fromNow();
+        let timestamp = moment.utc(response.data.timestamp).local().fromNow();
         row.innerHTML = `
             <td>
-                <span data-bs-toggle="tooltip" data-bs-placement="right" title="${data.status == "resolved" ? "Resolved" : "Active"}" aria-label="${data.status == "resolved" ? "Resolved" : "Active"}" role="tooltip" data-bs-original-title="${data.status == "resolved" ? "Resolved" : "Active"}">${data.code}</span>
+                <span data-bs-toggle="tooltip" data-bs-placement="right" title="${response.data.status == "resolved" ? "Resolved" : "Active"}" aria-label="${response.data.status == "resolved" ? "Resolved" : "Active"}" role="tooltip" data-bs-original-title="${response.data.status == "resolved" ? "Resolved" : "Active"}">${response.data.code}</span>
             </td>
-            <td>${data.eventId}</td>
-            <td>${data.severity}</td>
-            <td>${data.priority}</td>
-            <td>${data.category}</td>
-            <td>${data.namespace}</td>
-            <td>${data.name}</td>
-            <td>${data.descr}</td>
-            <td>${data.eventType}</td>
-            <td>${data.domain}</td>
-            <td>${data.subDomain}</td>
-            <td>${data.source}</td>
+            <td>${response.data.eventId}</td>
+            <td>${response.data.severity}</td>
+            <td>${response.data.priority}</td>
+            <td>${response.data.category}</td>
+            <td>${response.data.namespace}</td>
+            <td>${response.data.name}</td>
+            <td>${response.data.descr}</td>
+            <td>${response.data.eventType}</td>
+            <td>${response.data.domain}</td>
+            <td>${response.data.subDomain}</td>
+            <td>${response.data.source}</td>
             <td>${timestamp}</td>
-            <td>${data.detailsType}</td>
-            <td>${data.device}</td>
-            <td>${data.issue}</td>
-            <td>${data.issueName}</td>
-            <td>${data.issueCategory}</td>
+            <td>${response.data.detailsType}</td>
+            <td>${response.data.device}</td>
+            <td>${response.data.issue}</td>
+            <td>${response.data.issueName}</td>
+            <td>${response.data.issueCategory}</td>
             <td>
-                <a href="${data.link}" target="_blank" rel="noopener noreferrer" title="${data.issueName}">${data.link}</a>
+                <a href="${response.data.link}" target="_blank" rel="noopener noreferrer" title="${response.data.issueName}">${response.data.link}</a>
             </td>
         `;
         // Prepend the new row to the table body

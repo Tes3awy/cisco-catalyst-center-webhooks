@@ -6,7 +6,7 @@ from flask_sqlalchemy import SQLAlchemy
 from sqlalchemy import MetaData
 
 moment = Moment()
-socketio = SocketIO()
+socketio = SocketIO(logger=True, engineio_logger=True)
 basic_auth = BasicAuth()
 db = SQLAlchemy(
     metadata=MetaData(

@@ -52,5 +52,34 @@ class Notification(TimestampMixin, db.Model):
     def timestamp(cls):
         return cls._timestamp
 
+    @property
+    def serialize(self) -> dict[str, str | int | float]:
+        return {
+            "code": (
+                "<span class='status-dot status-green'></span>"
+                if self.status == "resolved"
+                else "<span class='status-dot status-red'></span>"
+            ),
+            "eventId": self.event_id,
+            "namespace": self.namespace,
+            "name": self.name,
+            "descr": self.descr,
+            "eventType": self.event_type,
+            "category": self.category,
+            "domain": self.domain,
+            "subDomain": self.subdomain,
+            "severity": self.severity,
+            "source": self.source,
+            "timestamp": self.timestamp,
+            "detailsType": self.details_type,
+            "priority": self.priority,
+            "device": self.device,
+            "issue": self.issue,
+            "issueName": self.issue_name,
+            "issueCategory": self.issue_category,
+            "status": self.status,
+            "link": self.link,
+        }
+
     def __repr__(self):
-        return f"<Notification {self.id!r}, {self.priority!r}, {self.severity!r}, {self.name!r}>"
+        return f"<Notification {self.id!r}, {self.priority!r}, {self.severity!r}, {self.name!r}, {self.status!r}>"
