@@ -12,6 +12,10 @@
 
 This project is a Proof of Concept (PoC) for the use of webhooks with Cisco SDN solutions, specifically integrating with Cisco Catalyst Center. It leverages a Flask application to receive and process webhook notifications in real-time, showcasing how events from the Cisco Catalyst Center can be handled programmatically.
 
+|                    Webhook Receiver Up                    |                      Webhook Receiver Down                      |
+| :-------------------------------------------------------: | :-------------------------------------------------------------: |
+| ![Server Up](assets/server-up.jpeg "Webhook Receiver Up") | ![Server Down](assets/server-down.jpeg "Webhook Receiver Down") |
+
 # Table of Contents
 
 - [Features](#features)
@@ -20,7 +24,6 @@ This project is a Proof of Concept (PoC) for the use of webhooks with Cisco SDN 
 - [Usage](#usage)
 - [Security Considerations/Improvements](#security-considerationsimprovements)
 - [Debugging Tips](#debugging-tips)
-- [Preview](#preview)
 - [References](#references)
 - [Contributing](#contributing)
 
@@ -126,9 +129,6 @@ Once the application is running, it will listen for webhook notifications from C
 ## Debugging Tips
 
 Check the Flask application logs in the terminal for errors and/or warnings.
-
-## Preview
-![Dashboard](assets/dashboard.png)
 
 ## References
 
