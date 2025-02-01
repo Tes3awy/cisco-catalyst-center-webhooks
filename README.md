@@ -7,8 +7,9 @@
 ![GitHub Issues or Pull Requests by label](https://img.shields.io/github/issues-pr/Tes3awy/cisco-catalyst-center-webhooks/gh)
 ![GitHub License](https://img.shields.io/github/license/Tes3awy/cisco-catalyst-center-webhooks)
 
-
 # Webhook Testing with Cisco Catalyst Center (a.k.a DNA Center)
+
+## Objective
 
 This project is a Proof of Concept (PoC) for the use of webhooks with Cisco SDN solutions, specifically integrating with Cisco Catalyst Center. It leverages a Flask application to receive and process webhook notifications in real-time, showcasing how events from the Cisco Catalyst Center can be handled programmatically.
 
@@ -18,16 +19,21 @@ This project is a Proof of Concept (PoC) for the use of webhooks with Cisco SDN 
 
 # Table of Contents
 
+- [Objective](#objective)
 - [Features](#features)
 - [Prerequisites](#prerequisites)
 - [Installation](#installation)
 - [Usage](#usage)
+- [Use Case](#use-case)
 - [Security Considerations/Improvements](#security-considerationsimprovements)
 - [Debugging Tips](#debugging-tips)
+- [Author(s)](#authors)
+- [Getting involved](#getting-involved)
 - [References](#references)
-- [Contributing](#contributing)
 
 ## Features
+
+**[`^        back to top        ^`](#webhook-testing-with-cisco-catalyst-center-aka-dna-center)**
 
 - **Webhook Integration**: Receive and process notifications from Cisco Catalyst Center.
 - **Websockets**: Enable ongoing, full-duplex, bidirectional communication between client and server.
@@ -38,11 +44,15 @@ This project is a Proof of Concept (PoC) for the use of webhooks with Cisco SDN 
 
 ## Prerequisites
 
+**[`^        back to top        ^`](#webhook-testing-with-cisco-catalyst-center-aka-dna-center)**
+
 - Python 3.9+
 - Flask
 - Cisco Catalyst Center with webhook enabled
 
 ## Installation
+
+**[`^        back to top        ^`](#webhook-testing-with-cisco-catalyst-center-aka-dna-center)**
 
 1. Clone the repo
 
@@ -119,24 +129,51 @@ Press CTRL+C to quit
 
 ## Usage
 
+**[`^        back to top        ^`](#webhook-testing-with-cisco-catalyst-center-aka-dna-center)**
+
 Once the application is running, it will listen for webhook notifications from Cisco Catalyst Center. When a notification is received, it will be displayed on the dashboard in real-time.
 
+## Use Case
+
+This project can be used to monitor and respond to events from Cisco Catalyst Center in real-time. For example, you can use it to:
+
+- Monitor network changes, such as device additions, deletions, or modifications.
+- Monitor network performance and troubleshoot issues in real-time.
+- Trigger automated responses to network events, such as sending alerts or notifications.
+- Analyze network data and trends over time.
+
 ## Security Considerations/Improvements
+
+**[`^        back to top        ^`](#webhook-testing-with-cisco-catalyst-center-aka-dna-center)**
 
 - Use HTTPs to secure webhook communications.
 - Validate all incoming requests using a custom authentication token.
 
 ## Debugging Tips
 
+**[`^        back to top        ^`](#webhook-testing-with-cisco-catalyst-center-aka-dna-center)**
+
 Check the Flask application logs in the terminal for errors and/or warnings.
 
+## Author(s)
+
+**[`^        back to top        ^`](#webhook-testing-with-cisco-catalyst-center-aka-dna-center)**
+
+This project was written and is maintained by the following individuals:
+
+* Osama Abbas <oabbas2512@gmail.com>
+
+## Getting involved
+
+**[`^        back to top        ^`](#webhook-testing-with-cisco-catalyst-center-aka-dna-center)**
+
+Contributions are welcome! Please open an issue or submit a pull request with improvements or bug fixes.
+
 ## References
+
+**[`^        back to top        ^`](#webhook-testing-with-cisco-catalyst-center-aka-dna-center)**
 
 - [Configure a Webhook Destination](https://www.cisco.com/c/en/us/td/docs/cloud-systems-management/network-automation-and-management/dna-center-platform/2-3-7/user-guide/b-dnac-platform-ug-2-3-7/b-dnac-platform-ug-2-3-7-chapter-0101.html#Cisco_Task_in_List_GUI.dita_e24b1b78-ea6e-4aa5-932a-359e04d4122f)
 - [Work with Event Notifications](https://www.cisco.com/c/en/us/td/docs/cloud-systems-management/network-automation-and-management/dna-center-platform/2-3-7/user-guide/b-dnac-platform-ug-2-3-7/b-dnac-platform-ug-2-3-7-chapter-0111.html#Cisco_Task_in_List_GUI.dita_ca236611-5a22-4c83-9a65-22d98a28b98e)
 - [Get Webhook'd - How to Build your Cisco DNA Center Integration](https://dcl3wxcscqm28.cloudfront.net/8130338649073540/4521856223995780/TECH%2041%20GetWebhooked.pdf)
 - [WebSockets and Webhooks - Embed network intelligence into your applications](https://www.ciscolive.com/c/dam/r/ciscolive/emea/docs/2024/pdf/DEVNET-1841.pdf)
-
-## Contributing
-
-Contributions are welcome! Please open an issue or submit a pull request with improvements or bug fixes.
