@@ -5,17 +5,16 @@ import secrets
 
 
 class Config(object):
-    TESTING = True
-    SECRET_KEY = secrets.token_hex()
-    DB_SERVER = "localhost"
-    SQLALCHEMY_DATABASE_URI = "sqlite:///webhook.sqlite3"
-    SQLALCHEMY_RECORD_QUERIES = True
+    """Base config."""
+
+    SECRET_KEY = os.getenv("SECRET_KEY", secrets.token_hex())
     SQLALCHEMY_TRACK_MODIFICATIONS = False
+    DB_SERVER = "localhost"
     # Username for the webhook BasicAuth (Change if needed)
     BASIC_AUTH_USERNAME = os.getenv("BASIC_AUTH_USERNAME", "admin")
     # Password for the webhook BasicAuth (Change if needed)
     BASIC_AUTH_PASSWORD = os.getenv("BASIC_AUTH_PASSWORD", "Cisco!2345")
-    BASIC_AUTH_REALM = "Cisco Catalyst Center Webhooks Authentication Required"
+    BASIC_AUTH_REALM = "Login Required"
     BASIC_AUTH_FORCE = False
     # Authorization String
     BASIC_AUTH = base64.b64encode(
@@ -27,3 +26,17 @@ class Config(object):
     # Cache-Control
     SEND_FILE_MAX_AGE_DEFAULT = 300
     PREFERRED_URL_SCHEME = "https"
+
+
+class DevelopmentConfig(Config):
+    FLASK_ENV = "development"
+    DEBUG = True
+    TESTING = True
+    SQLALCHEMY_RECORD_QUERIES = True
+    SQLALCHEMY_DATABASE_URI = "sqlite:///webhook.sqlite3"
+
+
+class ProductionConfig(Config):
+    FLASK_ENV = "production"
+    DEBUG = False
+    SQLALCHEMY_DATABASE_URI = os.getenv("DATABASE_URL")

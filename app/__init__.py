@@ -2,12 +2,11 @@
 from flask import Flask
 
 from app.extensions import basic_auth, db, moment, socketio
-from config import Config
+from config import Config, DevelopmentConfig, ProductionConfig
 
 
-def create_app(config_class=Config):
+def create_app(config_class=DevelopmentConfig):
     app = Flask(__name__)
-    app.config.from_pyfile("../config.py")
     app.config.from_object(config_class)
 
     db.init_app(app)
