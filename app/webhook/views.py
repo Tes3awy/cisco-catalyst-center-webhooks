@@ -13,7 +13,7 @@ from app.webhook import bp
 @basic_auth.required
 def webhook():
     print("Webhook Received")
-    notificaion = Notification(
+    notification = Notification(
         event_id=request.json.get("eventId"),
         namespace=request.json.get("namespace"),
         name=request.json.get("name"),
@@ -34,22 +34,34 @@ def webhook():
         status=request.json.get("details").get("Assurance Issue Status"),
         link=request.json.get("ciscoDnaEventLink"),
     )
-    db.session.add(notificaion)
-    db.session.commit()
+    try:
+        db.session.add(notification)
+        db.session.commit()
+    except Exception as e:
+        db.session.rollback()
+        return (
+            jsonify(
+                {
+                    "msg": str(e._message),
+                    "code": HTTPStatus.INTERNAL_SERVER_ERROR,
+                }
+            ),
+            HTTPStatus.INTERNAL_SERVER_ERROR,
+        )
+    else:
+        socketio.emit(
+            "event", {"data": notification.serialize}, namespace=url_for("main.index")
+        )
 
-    socketio.emit(
-        "event", {"data": notificaion.serialize}, namespace=url_for("main.index")
-    )
+        # You can add the logic of sending an email here as well
+        # Check https://realpython.com/python-send-email/
 
-    # You can add the logic of sending an email here as well
-    # Check https://realpython.com/python-send-email/
-
-    return (
-        jsonify(
-            {
-                "msg": "Webhook notification received and saved to the DB",
-                "code": HTTPStatus.CREATED,
-            }
-        ),
-        HTTPStatus.CREATED,
-    )
+        return (
+            jsonify(
+                {
+                    "msg": "Webhook notification received and saved to the DB",
+                    "code": HTTPStatus.CREATED,
+                }
+            ),
+            HTTPStatus.CREATED,
+        )
