@@ -2,6 +2,7 @@
 from datetime import datetime, timezone
 from typing import Optional
 
+import sqlalchemy as sa
 import sqlalchemy.orm as so
 from sqlalchemy.ext.hybrid import hybrid_property
 
@@ -19,25 +20,29 @@ class TimestampMixin:
 
 
 class Notification(TimestampMixin, db.Model):
+    __tablename__ = "notifications"
+
     id: so.Mapped[int] = so.mapped_column(primary_key=True)
-    event_id: so.Mapped[Optional[str]]
+    event_id: so.Mapped[str] = so.mapped_column(index=True)
     namespace: so.Mapped[Optional[str]]
-    name: so.Mapped[Optional[str]]
+    name: so.Mapped[Optional[str]] = so.mapped_column(index=True)
     descr: so.Mapped[Optional[str]]
-    event_type: so.Mapped[Optional[str]]
-    category: so.Mapped[Optional[str]]
-    domain: so.Mapped[Optional[str]]
+    event_type: so.Mapped[Optional[str]] = so.mapped_column(index=True)
+    category: so.Mapped[Optional[str]] = so.mapped_column(index=True)
+    domain: so.Mapped[Optional[str]] = so.mapped_column(index=True)
     subdomain: so.Mapped[Optional[str]]
-    severity: so.Mapped[Optional[int]]
-    source: so.Mapped[Optional[str]]
-    _timestamp: so.Mapped[Optional[int]]
+    severity: so.Mapped[int] = so.mapped_column(
+        sa.CheckConstraint("severity BETWEEN 1 AND 5", name="severity"), index=True
+    )
+    source: so.Mapped[Optional[str]] = so.mapped_column(index=True)
+    _timestamp: so.Mapped[Optional[str]]
     details_type: so.Mapped[Optional[str]]
-    priority: so.Mapped[Optional[str]]
-    device: so.Mapped[Optional[str]]
+    priority: so.Mapped[Optional[str]] = so.mapped_column(index=True)
+    device: so.Mapped[Optional[str]] = so.mapped_column(index=True)
     issue: so.Mapped[Optional[str]]
     issue_name: so.Mapped[Optional[str]]
-    issue_category: so.Mapped[Optional[str]]
-    status: so.Mapped[Optional[str]]
+    issue_category: so.Mapped[Optional[str]] = so.mapped_column(index=True)
+    status: so.Mapped[Optional[str]] = so.mapped_column(index=True)
     link: so.Mapped[Optional[str]]
 
     @hybrid_property
@@ -51,6 +56,14 @@ class Notification(TimestampMixin, db.Model):
     @timestamp.expression
     def timestamp(cls):
         return cls._timestamp
+
+    @hybrid_property
+    def is_critical(self) -> bool:
+        return self.severity == 1
+
+    @hybrid_property
+    def is_resolved(self) -> bool:
+        return self.status and self.status.lower() == "resolved"
 
     @property
     def serialize(self) -> dict[str, str | int | float]:
