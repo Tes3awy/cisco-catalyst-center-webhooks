@@ -5,7 +5,7 @@
 {% block content %}
 <div class="card">
     <div class="table-responsive">
-        <table class="table  table-bordered table-hover table-sm table-vcenter table-nowrap" role="table">
+        <table class="table table-bordered table-hover table-sm table-vcenter table-nowrap" role="table">
             <thead class="table-light">
                 <tr>
                     <th scope="col">
@@ -68,6 +68,10 @@
                             title="{{ notification.issue_name }}">{{ notification.link }}</a>
                     </td>
                 </tr>
+                {% else %}
+                <tr>
+                    <td colspan="19" class="text-center text-secondary py-6">No notifications found</td>
+                </tr>
                 {% endfor %}
             </tbody>
         </table>
@@ -75,7 +79,7 @@
     <div class="card-footer d-flex align-items-center">
         <p class="m-0 text-secondary">Showing <span>{{ notifications.first }}</span> to
             <span>{{ notifications.last }}</span>
-            of <span>{{ notifications.total }}</span> entries
+            of <span>{{ notifications.total }}</span> notifications
         </p>
         {% if notifications.total > config.get('PER_PAGE') %}
         {{ render_pagination(notifications) }}

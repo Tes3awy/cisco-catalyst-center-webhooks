@@ -4,15 +4,15 @@
     <head>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width,initial-scale=1.0">
-        <title>{% if title %}{{ title }} &dash; {% endif -%} Cisco Catalyst Center Webhooks</title>
+        <title>{% if title %}{{ title }} &ndash; {% endif -%} Cisco Catalyst Center Webhooks</title>
         <link rel="preconnect" href="//fonts.googleapis.com">
         <link rel="preconnect" href="//fonts.gstatic.com" crossorigin>
         <link rel="stylesheet" href="//fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&display=swap">
-        <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/@tabler/core@1.0.0-beta24/dist/css/tabler.min.css">
-        <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/@tabler/core@1.0.0-beta24/dist/css/tabler-flags.min.css">
-        <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/@tabler/core@1.0.0-beta24/dist/css/tabler-payments.min.css">
-        <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/@tabler/core@1.0.0-beta24/dist/css/tabler-social.min.css">
-        <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/@tabler/core@1.0.0-beta24/dist/css/tabler-vendors.min.css">
+        <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/@tabler/core@1.4.0/dist/css/tabler.min.css">
+        <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/@tabler/core@1.4.0/dist/css/tabler-flags.min.css">
+        <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/@tabler/core@1.4.0/dist/css/tabler-payments.min.css">
+        <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/@tabler/core@1.4.0/dist/css/tabler-social.min.css">
+        <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/@tabler/core@1.4.0/dist/css/tabler-vendors.min.css">
         <link rel="apple-touch-icon" sizes="57x57"
             href="{{ url_for('static', filename='favicon/apple-icon-57x57.png') }}">
         <link rel="apple-touch-icon" sizes="60x60"
@@ -93,13 +93,14 @@
                 </div>
             </div>
         </main>
-        <script src="//cdn.jsdelivr.net/npm/@tabler/core@1.0.0-beta24/dist/js/tabler.min.js"></script>
+        <script src="//cdn.jsdelivr.net/npm/@tabler/core@1.4.0/dist/js/tabler.min.js"></script>
         <script src="{{ url_for('static', filename='js/index.js') }}"></script>
         <script type="text/javascript">
             window.onload = () => {
                 checkServerStatus();
             };
         </script>
+        {# Add custom js here #}
         {% block js %}{% endblock js %}
     </body>
 
